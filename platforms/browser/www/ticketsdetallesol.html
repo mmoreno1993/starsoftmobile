@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="es">
+<head>
+	<meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+<title>App de Consulta para Usuarios STARSOFT</title>
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+	<link rel="stylesheet" href="css/font-awesome.min.css">
+	<link rel="stylesheet" type="text/css" href="css/estilos.css">
+</head>
+
+<body>
+<!--Barra-------------------------------------------------------------->
+<div class="container-fluid padding0 zonaazul">
+<div class="container zonatransp">
+	<div class="row">
+		<div class="col-md-2 col-sm-2 col-xs-2 padding0">
+			<a id="regresar"><span class="glyphicon glyphicon-chevron-left titleicon" aria-hidden="true"></span></a>
+		</div>
+		<div class="col-md-10 col-sm-10 col-xs-10"><p class="titlemod">Detalle del Ticket</p></div>
+	</div>
+	
+</div>
+</div>
+<!--Cuerpo-------------------------------------------------------------->
+<div class="container-fluid">
+<div class="container padding0">
+
+<div class="row">
+	<div id="listaTicket" class="col-md-12 col-xs-12">
+	<!--
+		<h3 class="txc-verde">N° [00012457]</h3>
+		<div class="item">
+			<h4 class="txc-azul"><i class="fa fa-arrow-circle-o-right fa-lg"></i> Registro de Ticket</h4>
+			<p><b>Fecha de registro:</b> [registro]</p>
+			<p><b>Asunto:</b> [asunto]</p>
+			<p><b>Nombre de Contacto:</b> [contacto]</p>
+			<p><b>Canal de Entrada:</b> [canal]</p>
+			<p><b>Versión y Módulo:</b> [version]</p>
+			<p><b>Descripción:</b> [descripcion]</p>
+			</div>
+		<div class="item">
+			<h4 class="txc-azul"><i class="fa fa-arrow-circle-o-right fa-lg"></i> Asignación de Ticket</h4>
+			<p><b>Requerimiento Reportado:</b> [tipo]</p>
+			<p><b>Analista designado:</b> [analista]</p>
+			</div>
+		<div class="item">
+			<h4 class="txc-azul"><i class="fa fa-arrow-circle-o-right fa-lg"></i> Atención brindada</h4>
+			<p><b>Tipo de Atención:</b> [atencion]</p>
+			<p><b>Detalle de la Atención:</b> [detalle]</p>
+		</div>
+	-->
+	</div>
+</div>
+</div></div>
+<!--Scripts--------------------------------------------------------------------------> 
+    <script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="cordova.js"></script>
+	<script type="text/javascript" src="js/index.js"></script>
+	<script type="text/javascript">
+		app.initialize();
+	</script>
+	<script>
+	function getUrlVars() {
+		var vars = {};
+		var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m,key,value) {
+			vars[key] = value;
+		});
+		return vars;
+	}
+	var ticket = getUrlVars()["t"];
+	var ruc = getUrlVars()["ruc"];
+	$( "#regresar" ).attr( "href", "atendidos.html?ruc=" + ruc );
+	archivoValidacion = "http://starsoftservicios.com/aj/ajax/beta/solucion_ticketdet.php?jsoncallback=?"
+	$.getJSON( archivoValidacion, {txtruc:ruc, ticket:ticket})
+	.done(function(respuestaServer){
+		var html='';
+		if(respuestaServer != ''){
+			if(respuestaServer[0][0]!=""){
+				html = '<h3 class="txc-verde">N° '+respuestaServer[0][0]+'</h3>';
+				html = html + '<div class="item">			<h4 class="txc-azul"><i class="fa fa-arrow-circle-o-right fa-lg"></i> Registro de Ticket</h4>';
+				html = html + '<p><b>Fecha de registro:</b> '+respuestaServer[0][2]+'</p>';
+				html = html + '<p><b>Asunto:</b> '+respuestaServer[0][3]+'</p>';
+				html = html + '<p><b>Nombre de Contacto:</b> '+respuestaServer[0][4]+'</p>';
+				html = html + '<p><b>Módulo:</b> '+respuestaServer[0][6]+'</p>';
+				html = html + '<p><b>Descripción:</b> '+respuestaServer[0][7]+'</p>';
+				html = html + '</div>		<div class="item">			<h4 class="txc-azul"><i class="fa fa-arrow-circle-o-right fa-lg"></i> Asignación de Ticket</h4>';
+				html = html + '<p><b>Requerimiento Reportado:</b> '+respuestaServer[0][11]+'</p>';
+				html = html + '<p><b>Analista designado:</b> '+respuestaServer[0][5]+'</p>';
+				html = html + '</div>		<div class="item">';
+				html = html + '<h4 class="txc-azul"><i class="fa fa-arrow-circle-o-right fa-lg"></i> Atención brindada</h4>';
+				html = html + '<p><b>Tipo de Atención:</b> '+respuestaServer[0][12]+'</p>';
+				html = html + '<p><b>Detalle de la Atención:</b> '+respuestaServer[0][8]+'</p>		</div>';
+				$('#listaTicket').append(html);
+			}else{
+				//$.mobile.changePage("#home")
+				//$('#contenidotickets').html('<div align="center"><img src="images/starsoftmobile.png" height="120" style="width:100%;" /></div><hr>No ha realizado tickets <br /><a href="#home" data-role="button" data-rel="back" data-icon="arrow-l" data-theme="b">Atras</a>');
+			}	
+
+		}else{
+			//$.mobile.loading( "hide" );
+			//$('#avisomsg').text('Su número de RUC no es válido o no tiene contrato vigente');
+			//$('#btnaviso').click();
+		}
+	})
+	</script>
+</body>
+</html>

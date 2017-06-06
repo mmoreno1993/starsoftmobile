@@ -1,0 +1,243 @@
+<!doctype html>
+<html lang="es">
+<head>
+	<meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+<title>App de Consulta para Usuarios STARSOFT</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+	<link rel="stylesheet" href="css/font-awesome.min.css">
+	<link rel="stylesheet" type="text/css" href="css/estilos.css">
+</head>
+
+<body class="zonaazulg1">
+<div class="container-fluid">
+	<div class="container zonatransp padh5">
+	<div class="row">
+		<div class="text-center padt10"><img src="images/logo_ssmobile200px.png" alt="STARSOFT Mobile" class="padding10" width="250px"></div>
+		<hr class="margin10">
+		<h3 class="text-center txc-wht padb10">Consulta para Usuarios</h3>
+		<br>
+		<div class="col-md-12 col-sm-12 col-xs-12">
+			<div class="panel-simple shadow1 padh15">
+				<form name="formulario" id="formulario">
+					<h4 class="text-center txc-rojo"><b>Inicio de Sesión</b></h4>
+					<div class="form-group padt20">
+						<input class="form-control" type="number" maxlength="11" id="ruc" placeholder="RUC">
+					</div>
+					<div class="padv10">
+						<button class="btn btn-block btn-verde">INGRESAR</button>
+					</div>
+				</form>
+			</div>
+		</div>
+		</div>
+	</div>
+	<button id="btnaviso" style="display:none;" data-toggle="modal" data-target="#mdlmensaje"></button>
+<br>
+<div class="txc-wht padv10 text-center">
+	Tecnología desarrollada por STARSOFT<br>
+	<a class="a0" href="http://www.starsoft.com.pe">www.starsoft.com.pe</a>
+</div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="mdlmensaje" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header zonarojag1 txc-wht">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				<h4 class="modal-title" id="myModalLabel"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i>&ensp;Aviso</h4>
+			</div>
+			<div class="modal-body">
+				<div id="avisomsg"></div>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-rojo2" data-dismiss="modal">Cerrar</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script type="text/javascript" src="js/bootstrap.min.js"></script>
+<script type="text/javascript" src="cordova.js"></script>
+<script type="text/javascript" src="js/index.js"></script>
+<script type="text/javascript">app.initialize();</script>
+<script>
+$('#formulario').submit(function(){
+	var ruc = $("#ruc").val()
+	archivoValidacion = "http://starsoftservicios.com/aj/ajax/beta/prueba_tickets.php?jsoncallback=?"
+	$.getJSON( archivoValidacion, {txtruc:ruc})
+	.done(function(respuestaServer){
+		var c=0;
+		var html='';
+		var html2='';
+		var html3;
+		if(respuestaServer != ''){
+			/*if(respuestaServer[0][0]!=""){
+				html='<ul class="listatickets" data-role="listview">';
+				while(c < respuestaServer.length){
+					html=html+'<li class="listatickets"><a class="ui-btn ui-shadow ui-corner-all ui-btn-icon-left ui-icon-tag" data-transition="slide" href="#t'+respuestaServer[c][0]+'">Nro: '+respuestaServer[c][0]+' - '+ respuestaServer[c][9] +'</a></li>';
+					html2='<div class="listatickets" data-role="page" id="t'+respuestaServer[c][0]+'"><div data-role="header" style="background:#6433A0;" data-theme="b"><a href="#home" class="ui-btn-inline" data-role="button" data-rel="back" data-icon="arrow-l" data-theme="b">Atras</a><h3>Nro: '+respuestaServer[c][0]+'</h3></div><div style="background:#7ABC8B;" data-role="content" data-theme="b"><div align="center"><img src="images/starsoftmobile.png" height="120" style="width:100%;" /></div><hr><br><ul data-role="listview" data-style="inset">';
+					html2=html2+'<li><font color="#C7CE48">Fecha de registro</font>: <font color="#72FFF7">'+respuestaServer[c][2]+'</font></li>';
+					html2=html2+'<li><font color="#C7CE48">Asunto</font>: <font color="#72FFF7">'+respuestaServer[c][3]+'</font></li>';
+					html2=html2+'<li><font color="#C7CE48">Usuario</font>: <font color="#72FFF7">'+respuestaServer[c][4]+'</font></li>';
+					html2=html2+'<li><font color="#C7CE48">Responsable</font>: <font color="#72FFF7">'+respuestaServer[c][5]+'</font></li>';
+					html2=html2+'<li><font color="#C7CE48">Módulo</font>: <font color="#72FFF7">'+respuestaServer[c][6]+'</font></li>';
+					html2=html2+'<li id="c'+respuestaServer[c][0]+'"><font color="#C7CE48">Inconveniente</font>:  <font color="#72FFF7">'+respuestaServer[c][7]+'</font></li>';
+					html2=html2+'<li id="d'+respuestaServer[c][0]+'"><font color="#C7CE48">Solución</font>: '+respuestaServer[c][8] +'</font></li>';
+					html2=html2+'</ul><br /><a class="listatickets" href="#tickets" data-role="button" data-icon="arrow-l" data-rel="back">Atras</a></div><div data-role="footer" data-theme="b" style="background:#6433A0;"><h3>Copyright ©</h3></div></div>';
+					$('body').append(html2);
+					var elimd = $('#d'+respuestaServer[c][0]+ ' p').text();
+					var elimc = $('#c'+respuestaServer[c][0]+ ' p').text();
+					$('ul li p').remove();
+					if (elimd!=""){
+						$('#d'+respuestaServer[c][0]).html('<font color="#C7CE48">Solución</font>: <font color="#72FFF7">'+elimd + '</font>' );
+					}
+					if (elimc!=""){
+						$('#c'+respuestaServer[c][0]).html('<font color="#C7CE48">Inconveniente:</font> <font color="#72FFF7">'+elimc+'</font>');
+					}
+					c=c+1;
+				}
+				html= html + '</ul><br><a class="listatickets"  href="#home" data-role="button" data-rel="back" data-icon="arrow-l" data-theme="b">Atras</a>';
+				$('#divbienvenido').text(respuestaServer[0][1]);
+				$('#contenidotickets').append(html);
+				$.mobile.changePage("#home")
+				
+			}else{
+				$.mobile.changePage("#home")
+				$('#contenidotickets').html('<div align="center"><img src="images/starsoftmobile.png" height="120" style="width:100%;" /></div><hr>No ha realizado tickets <br /><a href="#home" data-role="button" data-rel="back" data-icon="arrow-l" data-theme="b">Atras</a>');
+			}	
+		*/
+			window.location.href = "principal.html?ruc=" + ruc;
+		}else{
+			//$.mobile.loading( "hide" );
+			$('#avisomsg').text('Su número de RUC no es válido o no tiene contrato vigente.');
+			$('#btnaviso').click();
+		}
+	})
+	return false;
+})
+
+//Obteniendo datos de los usuarios certificados 
+$('#formulario').submit(function(){
+	var ruc = $("#txtruc").val()
+	archivoValidacion = "http://starsoftservicios.com/aj/ajax/beta/usercertificado.php?jsoncallback=?"
+	$.getJSON(archivoValidacion, {txtruc:ruc})
+	.done(function(respuestaServer){
+		var x=0;
+		var html='';
+		if(respuestaServer[0]!=""){
+			html='<div align="center"><img src="images/starsoftmobile.png" height="120" style="width:100%;" /></div><hr><br><ul class="listatickets" data-role="listview">';
+			while(x<respuestaServer.length)
+			{
+				html=html+'<li><font color="#C7CE48">Contrato</font>: <font color="#72FFF7">'+respuestaServer[x][0]+'</font><br /><font color="#C7CE48">Módulo</font>: <font color="#72FFF7">'+respuestaServer[x][1]+'</font><br /><font color="#C7CE48">Usuario</font>: <font color="#72FFF7">'+respuestaServer[x][2]+'</font><br /><font color="#C7CE48">Nota</font>: <font color="#72FFF7">'+respuestaServer[x][3]+'</font></li>';
+				x=x+1;
+			}
+			html=html+'</ul><br><a class="listatickets" href="#home" data-role="button" data-rel="back"  data-theme="b">Atras</a>';
+			$('#usuarioscertificados').html(html);
+		}else{
+			$('#usuarioscertificados').html('<div align="center"><img src="images/starsoftmobile.png" height="120" style="width:100%;" /></div><hr><h3 style="color:#2D18BA;">No hay usuarios certificados</h3> <br /><a class="listatickets" href="#home" data-role="button" data-rel="back" data-icon="arrow-l" data-theme="b" data-icon="arrow-l">Atras</a>');
+		}
+	})
+})
+//Obteniendo datos de las visitas
+$('#formulario').submit(function(){
+	var ruc = $("#txtruc").val()
+	archivoValidacion = "http://starsoftservicios.com/aj/ajax/beta/visitas.php?jsoncallback=?"
+	$.getJSON( archivoValidacion, {txtruc:ruc})
+	.done(function(respuestaServer){
+		var x=0;
+		var html='';
+		if(respuestaServer[0][0]!=""){
+			html='<div align="center"><img src="images/starsoftmobile.png" height="120" style="width:100%;" /></div><hr><br><ul class="listatickets" data-role="listview" data-theme="b">';
+			while(x<respuestaServer.length){
+				html=html+'<li><font color="#C7CE48">Codigo de visita</font>: <font color="#72FFF7">'+respuestaServer[x][8]+'</font> <br /><font color="#C7CE48">Fecha</font>: <font color="#72FFF7">'+respuestaServer[x][0]+'</font><br /><font color="#C7CE48">Consultor</font>: <font color="#72FFF7">'+respuestaServer[x][1]+'</font><br /><font color="#C7CE48">Motivo</font>: <font color="#72FFF7">'+respuestaServer[x][2]+'</font><br /><font color="#C7CE48">Usuario</font>: <font color="#72FFF7">'+respuestaServer[x][3]+'</font><br /><font color="#C7CE48">Actividades</font>: <font color="#72FFF7">'+respuestaServer[x][4]+'</font><br /><font color="#C7CE48">Horario</font>: <font color="#72FFF7">'+respuestaServer[x][5]+'</font><br /><font color="#C7CE48">Horas</font>: <font color="#72FFF7">'+respuestaServer[x][6]+'</font><br /><font color="#C7CE48">Dscta. Horas</font>: <font color="#72FFF7">'+respuestaServer[x][7]+'</font></li>';
+				x=x+1;
+			}
+			html=html+'</ul><br><a class="listatickets" href="#home" data-role="button" data-rel="back" data-icon="arrow-l" data-theme="b">Atras</a>';
+			$('#visitasrealizadas').html(html);
+		}else{
+			$('#visitasrealizadas').html('<div align="center"><img src="images/starsoftmobile.png" height="120" style="width:100%;" /></div><hr>No se han realizado visitas <br /><a class="listatickets" href="#home" data-role="button" data-rel="back" data-icon="arrow-l" data-theme="b">Atras</a>');
+		}
+	})
+})
+//Obteniendo listado de contratos
+$('#formulario').submit(function(){
+	var ruc = $("#txtruc").val()
+	archivoValidacion = "http://starsoftservicios.com/aj/ajax/beta/contratos.php?jsoncallback=?"
+	$.getJSON( archivoValidacion, {txtruc:ruc})
+	.done(function(respuestaServer){
+		var x=0;
+		var html='';
+		
+		if(respuestaServer!=""){
+			html='<div align="center"><img src="images/starsoftmobile.png" height="120" style="width:100%;" /></div><hr><br><ul class="listatickets" data-role="listview">';
+			while(x<respuestaServer.length){
+				console.log(respuestaServer[x][1]);
+				html=html+'<li><font color="#C7CE48">Módulo</font>: <font color="#72FFF7">'+respuestaServer[x][0]+
+				'</font> <br /><font color="#C7CE48">Vigencia desde</font>: <font color="#72FFF7">'+respuestaServer[x][1]+
+				'</font><br /><font color="#C7CE48">Vigencia hasta</font>: <font color="#72FFF7">'+respuestaServer[x][2]+
+				'</font><br /><font color="#C7CE48">Cantidad</font>: <font color="#72FFF7">'+respuestaServer[x][3]+'</font></li>';
+				x=x+1;
+			}
+			html=html+'</ul><br><a class="listatickets" href="#home" data-role="button" data-rel="back" data-icon="arrow-l" data-theme="b">Atras</a>';
+			$('#contratoshist').html(html);
+		}else{
+			$('#contratoshist').html('<div align="center"><img src="images/starsoftmobile.png" height="120" style="width:100%;" /></div><hr><br>No cuenta con contratos vigentes <br /><a class="listatickets" href="#home" data-role="button" data-icon="arrow-l" data-rel="back"  data-theme="b">Atras</a>');
+		}
+	})
+})
+
+//Obteniendo horas disponibles
+$('#formulario').submit(function(){
+	var ruc = $("#txtruc").val()
+	archivoValidacion = "http://starsoftservicios.com/aj/ajax/beta/horas.php?jsoncallback=?"
+	$.getJSON( archivoValidacion, {txtruc:ruc})
+	.done(function(respuestaServer){
+		var htmlhor='';
+		console.log(respuestaServer.length);
+		if(respuestaServer!=""){
+			htmlhor='<p>';
+			htmlhor=htmlhor+'<div align="center"><img src="images/starsoftmobile.png" height="120" style="width:100%;" /></div><hr><h3 style="color:#2D18BA;">Horas disponibles: '+ respuestaServer[0]+'</h3></p>'
+			htmlhor=htmlhor+'<a class="listatickets" href="#home" data-role="button" data-icon="arrow-l" data-rel="back">Atras</a>';
+			$('#horasdisp').html(htmlhor);
+		}else{
+			$('#horasdisp').html('<div align="center"><img src="images/starsoftmobile.png" height="120" style="width:100%;" /></div><hr>No cuenta con horas disponibles <br /><a href="#home" data-role="button" data-rel="back" data-icon="arrow-l" data-theme="b">Atras</a>');
+		}
+	})
+})
+
+$(document).on('ready',function(){
+	$('#login').on('click',function(){
+		$('.listatickets').remove();
+	});
+	$('#Salir').on('click',function(){
+		window.location.assign("index.html")
+	})
+	$( document ).on( "click", ".show-page-loading-msg", function() {
+    var $this = $( this ),
+        theme = $this.jqmData( "theme" ) || $.mobile.loader.prototype.options.theme,
+        msgText = $this.jqmData( "msgtext" ) || $.mobile.loader.prototype.options.text,
+        textVisible = $this.jqmData( "textvisible" ) || $.mobile.loader.prototype.options.textVisible,
+        textonly = !!$this.jqmData( "textonly" );
+        html = $this.jqmData( "html" ) || "";
+    $.mobile.loading( "show", {
+            text: msgText,
+            textVisible: textVisible,
+            theme: theme,
+            textonly: textonly,
+            html: html
+    });
+	})
+	.on( "click", ".hide-page-loading-msg", function() {
+	    $.mobile.loading( "hide" );
+	});
+})
+	
+</script>
+</body>
+</html>
