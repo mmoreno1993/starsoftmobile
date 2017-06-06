@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="es">
+<head>
+	<meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+<title>App de Consulta para Usuarios STARSOFT</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+	<link rel="stylesheet" href="css/font-awesome.min.css">
+	<link rel="stylesheet" type="text/css" href="css/estilos.css">
+</head>
+
+<body>
+<!--Head----------------------------------------------------------->
+<div class="container-fluid zonaazul">
+	<div class="container zonatransp">
+		<div class="row">
+			<div class="text-center padt10"><img src="images/logo_ssmobile200px.png" alt="STARSOFT Mobile" class="padding10" width="200px"></div>
+			<hr class="margin10">
+			<h3 class="text-center txc-wht padb10">Consulta para Usuarios</h3>
+		</div>
+	</div>
+</div>
+<!--Usuario------------------------------------------------------->
+<div class="container-fluid zonaazul2">
+	<div class="container zonatransp">
+		<div class="row">
+			<div class="text-center padt10">
+				<p id="xcliente">Empresa peruana sa</p>
+			</div>
+		</div>
+		
+	</div>
+</div>
+<!--Cuerpo--------------------------------------------------------->
+<div class="container-fluid padt10">
+	<div class="row padding5">
+		<div class="col-md-2 col-sm-4 col-xs-6 padding0">
+
+			<div id="tpendiente" class="panel-simple145 shadow2 margin10 zonaroja2">
+				<div class="zonaroja">
+					<h1 id="xpendiente" class="margin5 titlenumber">1</h1>
+				</div>
+				<div class="zonaroja2">
+					<p class="titleprin">Tickets<br>Pendientes</p>
+				</div>
+			</div>
+
+		</div>
+		<div class="col-md-2 col-sm-4 col-xs-6 padding0">
+
+			<div id="tsolucion" class="panel-simple145 shadow2 margin10 zonaverde">
+				<div class="zonaverde">
+					<h1 id="xsolucion" class="margin5 titlenumber">1</h1>
+				</div>
+				<div class="zonaverde2">
+					<p class="titleprin">Tickets<br>Atendidos</p>
+				</div>
+			</div>
+
+		</div>
+		
+		<div class="col-md-2 col-sm-4 col-xs-6 padding0">
+			<div id="modulo" class="panel-simple145 shadow2 margin10 zonanaran">
+				<div class="zonanaran">
+					<h1 id="xmodulo" class="margin5 titlenumber">1</h1>
+				</div>
+				<div class="zonanaran2">
+					<p class="titleprin">Módulos<br>Vigentes</p>
+				</div>
+			</div>
+		</div>
+		
+				
+		<div class="col-md-2 col-sm-4 col-xs-6 padding0">
+			<div id="visita" class="panel-simple145 shadow2 margin10 zonafucs">
+				<div class="zonafucs">
+					<h1 id="xvisita" class="margin5 titlenumber">1</h1>
+				</div>
+				<div class="zonafucs2">
+					<p class="titleprin">Visitas<br>Realizadas</p>
+				</div>
+			</div>
+		</div>
+
+		
+		<div class="col-md-2 col-sm-4 col-xs-6 padding0">
+			<div id="hora" class="panel-simple145 shadow2 margin10 zonaazul">
+				<div class="zonaazul">
+					<h1 class="margin5 titlenumber"><i class="fa fa-clock-o" aria-hidden="true"></i></h1>
+				</div>
+				<div class="zonaazul2">
+					<p class="titleprin">Horas<br>Disponibles</p>
+				</div>
+			</div>
+		</div>
+		
+		<div class="col-md-2 col-sm-4 col-xs-6 padding0">
+			<a class="a0" onclick="window.open('http://starsoftservicios.com/elearning/', '_system');">
+			<div class="panel-simple145 shadow2 margin10 zonaamar">
+				<div class="zonaamar">
+					<h1 class="margin5 titlenumber"><i class="fa fa-graduation-cap" aria-hidden="true"></i></h1>
+				</div>
+				<div class="zonaamar2">
+					<p class="titleprin">Aula<br>Virtual</p>
+				</div>
+			</div>
+			</a>
+		</div>
+		
+		<div class="col-md-4 col-md-offset-4 col-sm-12 col-xs-12 padding0">
+			<a class="a0" href="index.html">
+				<div class="shadow2 text-center margin10">
+					<div class="btn btn-rojo btn-block">
+						<span class="glyphicon glyphicon-log-out" aria-hidden="true"></span>&ensp;Cerrar Sesión
+					</div>
+				</div>
+			</a>
+		</div>
+	</div>
+</div>
+
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
+<script type="text/javascript" src="js/bootstrap.min.js"></script>
+<script type="text/javascript" src="cordova.js"></script>
+<script type="text/javascript" src="js/index.js"></script>
+<script type="text/javascript">app.initialize();</script>
+<script type="text/javascript">
+	function getUrlVars() {
+		var vars = {};
+		var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m,key,value) {
+			vars[key] = value;
+		});
+		return vars;
+	}
+	$('#tpendiente').on('click',function(){
+		var ruc = getUrlVars()["ruc"];
+		window.location.href = "tickets.html?ruc=" + ruc;
+	});
+	$('#tsolucion').on('click',function(){
+		var ruc = getUrlVars()["ruc"];
+		window.location.href = "atendidos.html?ruc=" + ruc;
+	});
+	$('#hora').on('click',function(){
+		var ruc = getUrlVars()["ruc"];
+		window.location.href = "horas.html?ruc=" + ruc;
+	});
+	
+	$('#modulo').on('click',function(){
+		var ruc = getUrlVars()["ruc"];
+		window.location.href = "modulos.html?ruc=" + ruc;
+	});
+	$('#visita').on('click',function(){
+		var ruc = getUrlVars()["ruc"];
+		window.location.href = "visitas.html?ruc=" + ruc;
+	});
+	var rucc = getUrlVars()["ruc"];
+	archivoValidacion = "http://starsoftservicios.com/aj/ajax/beta/principal.php?jsoncallback=?"
+	$.getJSON(archivoValidacion, {txtruc:rucc})
+	.done(function(respuestaServer){
+		var x=0;
+		var html='';
+		if(respuestaServer[0]!=""){
+			$('#xpendiente').html(respuestaServer[0][2]);
+			$('#xsolucion').html(respuestaServer[0][3]);
+			$('#xvisita').html(respuestaServer[0][1]);
+			$('#xmodulo').html(respuestaServer[0][0]);
+			$('#xcliente').html('<b>Cliente:</b> ' + respuestaServer[0][4]);
+		}
+	})
+</script>
+</body>
+</html>

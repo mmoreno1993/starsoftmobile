@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="es">
+<head>
+	<meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+<title>App de Consulta para Usuarios STARSOFT</title>
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+	<link rel="stylesheet" href="css/font-awesome.min.css">
+	<link rel="stylesheet" type="text/css" href="css/estilos.css">
+</head>
+
+<body>
+<!--Barra----------------------------------------------------->
+<div class="container-fluid padding0 zonaazul">
+<div class="container zonatransp">
+	<div class="row">
+		<div class="col-md-2 col-sm-2 col-xs-2 padding0">
+			<a id="regresar"><span class="glyphicon glyphicon-chevron-left titleicon" aria-hidden="true"></span></a>
+		</div>
+		<div class="col-md-10 col-sm-10 col-xs-10"><p class="titlemod">Horas disponibles</p></div>
+	</div>
+</div>
+</div>
+<!--Horas--------------------------------------------------->
+<div class="container-fluid headsimple">
+	<div class="row padv20 padh10">
+		<div class="col-md-12 col-xs-12 text-center">
+			<h4>Horas Disponibles: <b class="txc-rojo" id="horasdisp"></b></h4>
+		</div>
+	</div>
+</div>
+<!--Scripts--------------------------------------------------------------------------> 
+    <script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="cordova.js"></script>
+	<script type="text/javascript" src="js/index.js"></script>
+	<script type="text/javascript">
+		app.initialize();
+	</script>
+<script>
+//Obteniendo horas disponibles
+function getUrlVars() {
+	var vars = {};
+	var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m,key,value) {
+		vars[key] = value;
+	});
+	return vars;
+}
+
+	var ruc = getUrlVars()["ruc"];
+	$( "#regresar" ).attr( "href", "principal.html?ruc=" + ruc );
+	archivoValidacion = "http://starsoftservicios.com/aj/ajax/beta/horas.php?jsoncallback=?"
+	$.getJSON( archivoValidacion, {txtruc:ruc})
+	.done(function(respuestaServer){
+		//var htmlhor='';
+		//console.log(respuestaServer.length);
+		if(respuestaServer!=""){
+			$('#horasdisp').html(respuestaServer[0]);
+		}else{
+			//$('#horasdisp').html('<div align="center"><img src="images/starsoftmobile.png" height="120" style="width:100%;" /></div><hr>No cuenta con horas disponibles <br /><a href="#home" data-role="button" data-rel="back" data-icon="arrow-l" data-theme="b">Atras</a>');
+		}
+	})
+
+	
+</script>
+</body>
+</html>
