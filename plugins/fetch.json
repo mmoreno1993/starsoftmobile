@@ -127,77 +127,42 @@
         "is_top_level": true,
         "variables": {}
     },
-<<<<<<< HEAD
     "cordova-plugin-network-information": {
         "source": {
             "type": "registry",
             "id": "cordova-plugin-network-information@~1.2.0"
-=======
-    "cordova-plugin-statusbar": {
-        "source": {
-            "type": "registry",
-            "id": "cordova-plugin-statusbar@~2.1.2"
->>>>>>> origin/master
         },
         "is_top_level": true,
         "variables": {}
     },
-<<<<<<< HEAD
     "cordova-plugin-splashscreen": {
         "source": {
             "type": "registry",
             "id": "cordova-plugin-splashscreen@~3.2.1"
-=======
-    "cordova-plugin-vibration": {
-        "source": {
-            "type": "registry",
-            "id": "cordova-plugin-vibration@~2.1.0"
->>>>>>> origin/master
         },
         "is_top_level": true,
         "variables": {}
     },
-<<<<<<< HEAD
     "cordova-plugin-statusbar": {
         "source": {
             "type": "registry",
             "id": "cordova-plugin-statusbar@~2.1.2"
-=======
-    "cordova-plugin-splashscreen": {
-        "source": {
-            "type": "registry",
-            "id": "cordova-plugin-splashscreen@~3.2.1"
->>>>>>> origin/master
         },
         "is_top_level": true,
         "variables": {}
     },
-<<<<<<< HEAD
     "cordova-plugin-vibration": {
         "source": {
             "type": "registry",
             "id": "cordova-plugin-vibration@~2.1.0"
-=======
-    "cordova-plugin-whitelist": {
-        "source": {
-            "type": "registry",
-            "id": "cordova-plugin-whitelist@~1.2.1"
->>>>>>> origin/master
         },
         "is_top_level": true,
         "variables": {}
     },
-<<<<<<< HEAD
     "cordova-plugin-whitelist": {
         "source": {
             "type": "registry",
             "id": "cordova-plugin-whitelist@~1.2.1"
-=======
-    "cordova-plugin-network-information": {
-        "source": {
-            "type": "registry",
-            "id": "cordova-plugin-network-information@~1.2.0"
->>>>>>> origin/master
         },
         "is_top_level": true,
         "variables": {}
