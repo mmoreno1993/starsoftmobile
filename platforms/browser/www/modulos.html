@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="es">
+<head>
+	<meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+<title>App de Consulta para Usuarios STARSOFT</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+	<link rel="stylesheet" href="css/font-awesome.min.css">
+	<link rel="stylesheet" type="text/css" href="css/estilos.css">
+</head>
+
+<body>
+<!--Barra----------------------------------------------------------------->
+<div class="container-fluid padding0 zonaazul">
+<div class="container zonatransp">
+	<div class="row">
+		<div class="col-md-2 col-sm-2 col-xs-2 padding0">
+			<a id="regresar"><span class="glyphicon glyphicon-chevron-left titleicon" aria-hidden="true"></span></a>
+		</div>
+		<div class="col-md-10 col-sm-10 col-xs-10"><p class="titlemod">Módulos Vigentes</p></div>
+	</div>
+	
+</div>
+</div>
+<!--Cuerpo-------------------------------------------------------------->
+<div class="container-fluid padt10 padh5">
+<div class="container padding0">
+<div id="modulos">
+	<div class="row panel-simple margin5">
+		<div class="col-md-12 col-xs-12">
+			<div data-toggle="collapse" data-target="#factron" class="dedo">
+				<div class="col-md-10 col-xs-10 itemtitle">Factron</div>
+				<div class="col-md-2 col-xs-2 itemicon"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></div>
+			</div>
+		</div>
+		<div class="col-md-12 col-xs-12">
+			<div id="factron" class="collapse">
+				<div class="item">
+					<p><b>Cantidad:</b> [cantidad]</p>
+					<p><b>Vigencia:</b> Desde [fecha1], hasta [fecha2]</p>
+					<p><b>Quedan:</b> [dias] días</p>
+				</div>
+				<div class="item">
+					<p><b>Cantidad:</b> [cantidad]</p>
+					<p><b>Vigencia:</b> Desde [fecha1], hasta [fecha2]</p>
+					<p><b>Quedan:</b> [dias] días</p>
+					</div>
+				<div class="item">
+					<p><b>Cantidad:</b> [cantidad]</p>
+					<p><b>Vigencia:</b> Desde [fecha1], hasta [fecha2]</p>
+					<p><b>Quedan:</b> [dias] días</p>
+					</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+</div></div>
+<!--Scripts--------------------------------------------------------------------------> 
+    <script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="cordova.js"></script>
+	<script type="text/javascript" src="js/index.js"></script>
+	<script type="text/javascript">
+		app.initialize();
+	</script>
+	<script type="text/javascript">
+		function getUrlVars() {
+			var vars = {};
+			var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m,key,value) {
+				vars[key] = value;
+			});
+			return vars;
+		}
+		var ruc = getUrlVars()["ruc"];
+		$( "#regresar" ).attr( "href", "principal.html?ruc=" + ruc );
+		archivoValidacion = "http://starsoftservicios.com/aj/ajax/beta/contratos.php?jsoncallback=?"
+		$.getJSON( archivoValidacion, {txtruc:ruc})
+		.done(function(respuestaServer){
+			var x=0;
+			var html='';
+			
+			if(respuestaServer!=""){
+
+				while(x<respuestaServer.length){
+					html = html + '<div class="row panel-simple margin5"><div class="col-md-12 col-xs-12"><div data-toggle="collapse" data-target="#'+respuestaServer[x][4]+'" class="dedo">';
+					html = html + '<div class="col-md-10 col-xs-10 itemtitle" '+((respuestaServer[x][5]=='VENCIDO')?'style="color:#ff3322;"':'')+'>'+respuestaServer[x][0]+'</div><div class="col-md-2 col-xs-2 itemicon"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></div>			</div>		</div>		<div class="col-md-12 col-xs-12">			<div id="'+respuestaServer[x][4]+'" class="collapse">				<div class="item">';
+					html = html + '<p><b>Cantidad:</b> '+respuestaServer[x][3]+'</p><p><b>Vigencia:</b> Desde '+respuestaServer[x][1]+', hasta '+respuestaServer[x][2]+'</p><p><b>Estado:</b> '+respuestaServer[x][5]+'</p></div>';
+					html = html + '</div></div></div>';
+					x=x+1;
+				}
+				$('#modulos').html(html);
+			}else{
+				//$('#contratoshist').html('<div align="center"><img src="images/starsoftmobile.png" height="120" style="width:100%;" /></div><hr><br>No cuenta con contratos vigentes <br /><a class="listatickets" href="#home" data-role="button" data-icon="arrow-l" data-rel="back"  data-theme="b">Atras</a>');
+			}
+		})
+	</script>
+</body>
+</html>
