@@ -1,4 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
+<<<<<<< HEAD
 <widget id="com.starsoft.consultausuarios" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0">
     <name>Consulta para Usuarios STARSOFT</name>
     <description>
@@ -6,8 +7,18 @@
     </description>
     <author email="publicidad@starsoft.com.pe" href="http://www.starsoft.com.pe/">
         Sistemas Starsoft
+=======
+<widget id="com.phonegap.helloworld" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0">
+    <name>App Tickets</name>
+    <description>
+        Hello World sample application that responds to the deviceready event.
+    </description>
+    <author email="support@phonegap.com" href="http://phonegap.com">
+        PhoneGap Team
+>>>>>>> origin/master
     </author>
-    <content src="index.html" />
+    <content src="index.html"/>
+    <icon src="icon.png"/>
     <preference name="DisallowOverscroll" value="true" />
     <preference name="android-minSdkVersion" value="14" />
     <plugin name="cordova-plugin-battery-status" source="npm" spec="~1.1.1" />

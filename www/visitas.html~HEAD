@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="es">
+<head>
+	<meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+<title>App de Consulta para Usuarios STARSOFT</title>
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+	<link rel="stylesheet" href="css/font-awesome.min.css">
+	<link rel="stylesheet" type="text/css" href="css/estilos.css">
+</head>
+
+<body>
+<!--Barra----------------------------------------------------->
+<div class="container-fluid padding0 zonaazul">
+<div class="container zonatransp">
+	<div class="row">
+		<div class="col-md-2 col-sm-2 col-xs-2 padding0">
+			<a id="regresar"><span class="glyphicon glyphicon-chevron-left titleicon" aria-hidden="true"></span></a>
+		</div>
+		<div class="col-md-10 col-sm-10 col-xs-10"><p class="titlemod">Visitas</p></div>
+	</div>
+</div>
+</div>
+<!--Cuerpo-------------------------------------------------->
+<div class="container-fluid padt20">
+<div class="container">
+
+
+<div id = "visitasrealizadas">
+
+</div>
+
+</div></div>
+<!--Scripts--------------------------------------------------------------------------> 
+    <script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="cordova.js"></script>
+	<script type="text/javascript" src="js/index.js"></script>
+	<script type="text/javascript">
+		app.initialize();
+	</script>
+	<script>
+	function getUrlVars() {
+		var vars = {};
+		var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m,key,value) {
+			vars[key] = value;
+		});
+		return vars;
+	}
+	var ruc = getUrlVars()["ruc"];
+	$( "#regresar" ).attr( "href", "principal.html?ruc=" + ruc );
+		archivoValidacion = "http://starsoftservicios.com/aj/ajax/beta/visitas.php?jsoncallback=?"
+		$.getJSON( archivoValidacion, {txtruc:ruc})
+		.done(function(respuestaServer){
+			var x=0;
+			var html='';
+			if(respuestaServer[0][0]!=""){
+				html = '';
+				while(x<respuestaServer.length){
+					html = html + '<div class="row panel-simple margin5"><div class="col-md-12 col-xs-12"><div data-toggle="collapse" data-target="#v'+respuestaServer[x][8]+'" class="dedo">';
+					html = html + '<div class="col-md-10 col-xs-10 itemtitle">'+respuestaServer[x][8]+' - '+respuestaServer[x][0]+'</div><div class="col-md-2 col-xs-2 itemicon">			<span class="glyphicon glyphicon-plus" aria-hidden="true"></span></div>		</div>	</div>	<div class="col-md-12 col-xs-12">		<div id="v'+respuestaServer[x][8]+'" class="collapse">			<div class="item">';
+					html = html + '<p><b>Consultor:</b> '+respuestaServer[x][1]+'</p>';
+					html = html + '<p><b>Motivo:</b> '+respuestaServer[x][2]+'</p>';
+					html = html + '<p><b>Usuario:</b> '+respuestaServer[x][3]+'</p>';
+					html = html + '<p><b>Actividades:</b> '+respuestaServer[x][4]+'</p>';
+					html = html + '<p><b>Horario:</b> '+respuestaServer[x][5]+'</p>';
+					html = html + '<p><b>Horas:</b> '+respuestaServer[x][6]+'</p>';
+					html = html + '<p><b>Descuenta Horas:</b> '+respuestaServer[x][7]+'</p></div></div></div></div>';
+					x=x+1;
+				}
+				$('#visitasrealizadas').html(html);
+			}else{
+				//$('#visitasrealizadas').html('<div align="center"><img src="images/starsoftmobile.png" height="120" style="width:100%;" /></div><hr>No se han realizado visitas <br /><a class="listatickets" href="#home" data-role="button" data-rel="back" data-icon="arrow-l" data-theme="b">Atras</a>');
+			}
+		})
+	</script>
+</body>
+</html>
