@@ -86,16 +86,16 @@
 				html = html + '<div class="item">			<h4 class="txc-azul"><i class="fa fa-arrow-circle-o-right fa-lg"></i> Registro de Ticket</h4>';
 				html = html + '<p><b>Fecha de registro:</b> '+respuestaServer[0][2]+'</p>';
 				html = html + '<p><b>Asunto:</b> '+respuestaServer[0][3]+'</p>';
-				html = html + '<p><b>Nombre de Contacto:</b> '+respuestaServer[0][4]+'</p>';
-				html = html + '<p><b>Módulo:</b> '+respuestaServer[0][6]+'</p>';
-				html = html + '<p><b>Descripción:</b> '+respuestaServer[0][7]+'</p>';
+				html = html + '<p style="text-align:justify;"><b>Nombre de Contacto:</b> '+respuestaServer[0][4]+'</p>';
+				html = html + '<p style="text-align:justify;"><b>Módulo:</b> '+respuestaServer[0][6]+'</p>';
+				html = html + '<p style="text-align:justify;"><b>Descripción:</b> '+respuestaServer[0][7]+'</p>';
 				html = html + '</div>		<div class="item">			<h4 class="txc-azul"><i class="fa fa-arrow-circle-o-right fa-lg"></i> Asignación de Ticket</h4>';
-				html = html + '<p><b>Requerimiento Reportado:</b> '+respuestaServer[0][11]+'</p>';
-				html = html + '<p><b>Analista designado:</b> '+respuestaServer[0][5]+'</p>';
+				html = html + '<p style="text-align:justify;"><b>Requerimiento Reportado:</b> '+respuestaServer[0][11]+'</p>';
+				html = html + '<p style="text-align:justify;"><b>Analista designado:</b> '+respuestaServer[0][5]+'</p>';
 				html = html + '</div>		<div class="item">';
 				html = html + '<h4 class="txc-azul"><i class="fa fa-arrow-circle-o-right fa-lg"></i> Atención brindada</h4>';
-				html = html + '<p><b>Tipo de Atención:</b> '+respuestaServer[0][12]+'</p>';
-				html = html + '<p><b>Detalle de la Atención:</b> '+respuestaServer[0][8]+'</p>		</div>';
+				html = html + '<p style="text-align:justify;"><b>Tipo de Atención:</b> '+respuestaServer[0][12]+'</p>';
+				html = html + '<p style="text-align:justify;"><b>Detalle de la Atención:</b> '+respuestaServer[0][8]+'</p>		</div>';
 				$('#listaTicket').append(html);
 				$("#wait").css("display", "none");
 			}else{
