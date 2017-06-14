@@ -95,7 +95,14 @@
 			html=html+'<h4 class="txc-azul"><i class="fa fa-arrow-circle-o-right fa-lg"></i> Asignación de ticket</h4>';
 			html=html+'<p style="text-align:justify;"><b>Requerimiento Reportado:</b> '+respuestaServer[0][12]+'</p>';
 			html=html+'<p style="text-align:justify;"><b>Analista designado:</b> '+respuestaServer[0][1]+'</p>';
-			html=html+'<p style="text-align:justify;"><b>N° de Orden:</b> '+((respuestaServer[0][0]==0)?'Ya paso el turno, se llamará a la brevedad posible':respuestaServer[0][0])+'</p>';
+			if(respuestaServer[0][12]=="")
+			{
+				html=html+'<p style="text-align:justify;"><b>N° de Orden:</b> Se otorgará el número al momento de asignar el ticket</p>';
+			}else
+			{
+				html=html+'<p style="text-align:justify;"><b>N° de Orden:</b> '+((respuestaServer[0][0]==0)?'Ya paso el turno, se llamará a la brevedad posible':respuestaServer[0][0])+'</p>';
+			}
+			
 			html=html+'</div>';
 			$('#listaTicket').html(html);
 			$("#wait").css("display", "none");
