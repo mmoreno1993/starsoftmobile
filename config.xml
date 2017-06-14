@@ -1,11 +1,16 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="com.starsoft.consultausuarios" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0">
+<widget xmlns   = "http://www.w3.org/ns/widgets"
+        xmlns:gap   = "http://phonegap.com/ns/1.0"
+        id          = "starsoftmobile.keystore"
+        versionCode = "20" 
+        version     = "2.0.0" >
     <name>Consulta para Usuarios STARSOFT</name>
     <description>
         Consulta para Usuarios STARSOFT
     </description>
     <author email="publicidad@starsoft.com.pe" href="http://www.starsoft.com.pe/">
         Sistemas Starsoft
+		
     </author>
     <content src="index.html" />
     <preference name="DisallowOverscroll" value="true" />
