@@ -26,8 +26,8 @@
 <!--Horas--------------------------------------------------->
 <div class="container-fluid headsimple">
 	<div class="row padv20 padh10">
-		<div class="col-md-12 col-xs-12 text-center">
-			<h4>Horas Disponibles: <b class="txc-rojo" id="horasdisp"></b></h4>
+		<div id="horasdisp" class="col-md-12 col-xs-12 text-center">
+			
 		</div>
 	</div>
 </div>
@@ -57,12 +57,17 @@ function getUrlVars() {
 	.done(function(respuestaServer){
 		//var htmlhor='';
 		//console.log(respuestaServer.length);
-		if(respuestaServer!=""){
+		if(respuestaServer!=""){			
+			if(respuestaServer[0]=='00:00')
+			{
+				$('#horasdisp').html('<h4>No hay horas disponibles</h4>');
+			}else{
+				$('#horasdisp').html('<h4>Horas Disponibles: <b class="txc-rojo" >'+respuestaServer[0]+'</b></h4>');
+			}
 			$("#wait").css("display", "none");
-			$('#horasdisp').html(respuestaServer[0]);
 		}else{
 			$("#wait").css("display", "none");
-			//$('#horasdisp').html('<div align="center"><img src="images/starsoftmobile.png" height="120" style="width:100%;" /></div><hr>No cuenta con horas disponibles <br /><a href="#home" data-role="button" data-rel="back" data-icon="arrow-l" data-theme="b">Atras</a>');
+			$('#horasdisp').html('<h4>No hay horas disponibles</h4>');
 		}
 	})
 
