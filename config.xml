@@ -4,9 +4,9 @@
         id          = "starsoftmobile.keystore"
         versionCode = "20" 
         version     = "2.0.0" >
-    <name>Consulta para Usuarios STARSOFT</name>
+    <name>Consulta para Usuarios</name>
     <description>
-        Consulta para Usuarios STARSOFT
+        Consulta para Usuarios
     </description>
     <author email="publicidad@starsoft.com.pe" href="http://www.starsoft.com.pe/">
         Sistemas Starsoft
