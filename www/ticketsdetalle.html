@@ -90,17 +90,17 @@
 			html=html+'<p style="text-align:justify;"><b>Nombre de Contacto:</b> '+respuestaServer[0][11]+'</p>';
 			html=html+'<p style="text-align:justify;"><b>Módulo:</b> '+respuestaServer[0][16]+'</p>';
 			html=html+'<p style="text-align:justify;"><b>Descripción</b> '+respuestaServer[0][9]+'</p>';
-			html=html+'</div>';
-			html=html+'<div class="item">';
-			html=html+'<h4 class="txc-azul"><i class="fa fa-arrow-circle-o-right fa-lg"></i> Asignación de ticket</h4>';
+			//html=html+'</div>';
+			//html=html+'<div class="item">';
+			//html=html+'<h4 class="txc-azul"><i class="fa fa-arrow-circle-o-right fa-lg"></i> Asignación de ticket</h4>';
 			html=html+'<p style="text-align:justify;"><b>Solicitud presentada:</b> '+respuestaServer[0][12]+'</p>';
 			html=html+'<p style="text-align:justify;"><b>Analista designado:</b> '+respuestaServer[0][1]+'</p>';
 			if(respuestaServer[0][12]=="")
 			{
-				html=html+'<p style="text-align:justify;"><b>N° de Orden:</b> Se otorgará el número al momento de asignar el ticket</p>';
+				html=html+'<p style="text-align:justify;"><b>N° de Orden para atención:</b> Se otorgará el número al momento de asignar el ticket</p>';
 			}else
 			{
-				html=html+'<p style="text-align:justify;"><b>N° de Orden:</b> '+((respuestaServer[0][0]==0)?'Ya paso el turno, se llamará a la brevedad posible':respuestaServer[0][0])+'</p>';
+				html=html+'<p style="text-align:justify;"><b>N° de Orden para atención:</b> '+((respuestaServer[0][0]==0)?'Ya paso el turno, se llamará a la brevedad posible':respuestaServer[0][0])+'</p>';
 			}
 			
 			html=html+'</div>';
